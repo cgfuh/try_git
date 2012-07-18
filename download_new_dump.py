@@ -1,13 +1,17 @@
 #!/usr/bin/python
-# -*- by Mariano coding: utf-8 -*-
-
-import getopt, sys
+# -*- coding: utf-8 -*-
+#
+# by Mariano
+#
+import getopt
+import sys
 from telnetlib import Telnet
+
 
 def telnet_handler(host, dump, passw, set_name):
     if not host:
-        host='127.0.0.1'
-    port=23 # telnet
+        host = '127.0.0.1'
+    port = 23
     tftphost = '200.2.127.150'
     tftppath = ''  # e.g: tftppath = 'mdump/'
 
@@ -21,12 +25,12 @@ def telnet_handler(host, dump, passw, set_name):
     tn.write('admin' + "\n")
     #print "waiting for password string..."
     tn.read_until("password: ")
-    tn.write('%s'+ "\n") % passw
+    tn.write(passw + "\n")
 
     tn.read_until("%s> ") % set_name
     cmd = "dump network %s %s" % (tftphost, tftppath + dump)
     print "running \"%s\" on host %s" % (cmd, host)
-    tn.write(cmd + '\n');
+    tn.write(cmd + '\n')
 
     print tn.read_until("%s> ") + " ( %s )" % (set_name, host)
     tn.write('logout\n')
@@ -47,6 +51,7 @@ def usage():
         -s, --set_pront: set_pront del DSLAM
         -v:              be verbose
     ''' % (sys.argv[0])
+
 
 def parse_args():
     try:
@@ -87,6 +92,7 @@ def parse_args():
             password is not None and \
             set_pront is not None:
         telnet_handler(device, dump_name, password, set_pront)
+
 
 def main():
     parse_args()
