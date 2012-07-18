@@ -9,7 +9,7 @@ def telnet_handler(host, dump, passw, set_name):
         host='127.0.0.1'
     port=23 # telnet
     tftphost = '200.2.127.150'
-    tftppath = '' # e.g: tftppath = 'mdump/'
+    tftppath = ''  # e.g: tftppath = 'mdump/'
 
     # connect
     print "Connecting to %s..." % host
@@ -53,7 +53,7 @@ def parse_args():
         opts, args = getopt.getopt(sys.argv[1:], "hd:n:p:s:v", ["help", "device=", "dump_name=", "password=", "set_pront="])
     except getopt.GetoptError, err:
         # print help information and exit:
-        print str(err) # will print something like "option -a not recognized"
+        print str(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(4)
     device = None
@@ -82,7 +82,10 @@ def parse_args():
 
     #print "host: %s" % (device)
     #print "dump name: %s" % (dump_name)
-    if device is not None and dump_name is not None and password is not None and set_pront is not None:
+    if device is not None and \
+            dump_name is not None and \
+            password is not None and \
+            set_pront is not None:
         telnet_handler(device, dump_name, password, set_pront)
 
 def main():
