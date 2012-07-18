@@ -43,8 +43,8 @@ def usage():
         -h, --help:      display this output
         -d, --device:    host target
         -n, --dump_name: dump name to download
-		-p, --password:  password DSLAM
-		-s, --set_pront: set_pront del DSLAM
+        -p, --password:  password DSLAM
+        -s, --set_pront: set_pront del DSLAM
         -v:              be verbose
     ''' % (sys.argv[0])
 
@@ -58,8 +58,8 @@ def parse_args():
         sys.exit(4)
     device = None
     dump_name = None
-	password = None
-	set_pront = None
+    password = None
+    set_pront = None
     verbose = False
     for o, a in opts:
         if o == "-v":
@@ -71,9 +71,9 @@ def parse_args():
             device = a
         elif o in ("-n", "--dump_name"):
             dump_name = a
-		elif o in ("-p", "--password"):
+        elif o in ("-p", "--password"):
             password = a
-		elif o in ("-s", "--set_pront"):
+        elif o in ("-s", "--set_pront"):
             set_pront = a
         else:
             assert False, "unhandled option"
