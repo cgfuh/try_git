@@ -27,12 +27,12 @@ def telnet_handler(host, dump, passw, set_name):
     tn.read_until("password: ")
     tn.write(passw + "\n")
 
-    tn.read_until("%s> ") % set_name
+    tn.read_until(set_name + "> ")
     cmd = "dump network %s %s" % (tftphost, tftppath + dump)
     print "running \"%s\" on host %s" % (cmd, host)
     tn.write(cmd + '\n')
 
-    print tn.read_until("%s> ") + " ( %s )" % (set_name, host)
+    tn.read_until(set_name + "> ")
     tn.write('logout\n')
     print "Logging out from %s..." % host
 
